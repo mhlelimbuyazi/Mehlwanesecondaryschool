@@ -1,0 +1,1412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mehlwane Secondary School - Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    min-height: calc(100vh - 40px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.page {
+    display: none;
+    width: 100%;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* SCHOOL BRANDING */
+
+.school-title {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.cursive-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    background: linear-gradient(45deg,#007bff,#ff9800,#4caf50);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.3));
+    animation: elegantReveal 1.5s ease-out;
+}
+
+.sub-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    background: linear-gradient(45deg,#007bff,#ff9800,#4caf50);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes elegantReveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.verified-badge {
+    display: inline-block;
+    vertical-align: middle;
+    width: 23px;
+    height: 23px;
+    color: #1d9bf0;
+    margin-left: 4px;
+}
+
+.verified-badge svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.school-subtitle,
+.dashboard-subtitle {
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.6;
+    color: #23b202;
+}
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+    min-height: 20px;
+}
+
+/* MISSION AND VISION */
+.home-card.mission-card {
+    border-left: 4px solid #38bdf8;
+}
+
+.home-card.vision-card {
+    border-left: 4px solid #eab308;
+}
+
+.home-card.mission-card h3 {
+    color: #38bdf8;
+}
+
+.home-card.vision-card h3 {
+    color: #eab308;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #38bdf8;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    padding: 14px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #2ea6ff;
+}
+
+.input-group input::placeholder {
+    color: #64748b;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg,#33bb11,#0b2bfb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.motto {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 15px;
+    color: #ff3366;
+}
+
+.mott {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+    color: #dc1c85;
+}
+
+/* HOME PAGE */
+
+#homePage {
+    min-height: calc(100vh - 40px);
+    display: none;
+    flex-direction: column;
+}
+
+#homePage.active {
+    display: flex;
+}
+
+.home-info {
+    text-align: center;
+    margin: 24px 0;
+}
+
+.home-info h1 {
+    color: #38bdf8;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.home-info p {
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.home-card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.home-card h3 {
+    color: #eab308;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.home-card p {
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.home-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 22px;
+}
+
+.home-actions .btn {
+    flex: 1;
+}
+
+.home-footer {
+    text-align: center;
+    color: #dc1c85;
+    font-size: 12px;
+    line-height: 1.8;
+    padding: 20px 0 10px;
+}
+
+/* DASHBOARD */
+
+.dashboard-title {
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.welcome-card {
+    background: rgba(255,255,255,.08);
+    border: 2px solid #243b9a;
+    border-radius: 22px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.profile-item {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #09b31b;
+    text-align: left;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.profile-item:last-child {
+    margin-bottom: 0;
+}
+
+.profile-item span:first-child {
+    font-weight: bold;
+}
+
+.profile-value {
+    color: #fff !important;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.btn-outline {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 6px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 10px;
+    font-size: .72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: #1e2957;
+}
+
+/* RIGHT MENU */
+
+.hamburger-menu-btn {
+    position: fixed;
+    top: 12px;
+    right: 15px;
+    background: #0f172a;
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1000;
+}
+
+.kebab-dropdown-box {
+    display: none;
+    position: fixed;
+    top: 58px;
+    right: 15px;
+    width: 80vw;
+    max-width: 300px;
+    background: linear-gradient(45deg,#3b1693,#247404);
+    border: 2px solid #2d3b55;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,.5);
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.kebab-menu-open {
+    display: block;
+}
+
+.menu-row {
+    padding: 12px 14px;
+    color: white;
+    font-size: 13px;
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    overflow-wrap: break-word;
+}
+
+.menu-row:last-child {
+    border-bottom: none;
+}
+
+.menu-row a,
+.telegram-link {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+/* LEFT MENU */
+
+.menu-container {
+    position: fixed;
+    top: 12px;
+    left: 15px;
+    z-index: 1000;
+}
+
+.menu-btn {
+    background: #0f172a;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: linear-gradient(45deg,#3b1693,#0ac446);
+    min-width: 240px;
+    max-width: calc(100vw - 30px);
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.5);
+    text-align: center;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.menu-section {
+    padding: 12px 8px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.last-section {
+    border-bottom: none;
+}
+
+.clickable-section {
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.clickable-section:hover {
+    background: rgba(255,255,255,.08);
+}
+
+.click-hint {
+    font-size: 11px;
+    color: #38bdf8;
+    margin-top: 4px;
+}
+
+.info-label {
+    font-weight: bold;
+    color: white;
+}
+
+.submenu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #38bdf8;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.grade-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.grade-card {
+    background: linear-gradient(45deg,#3b1693,#eb074d);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card-info {
+    background: #38bdf8;
+    color: #121625;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* NOTICE / PRICES */
+
+.meeting-card {
+    background: #1e293b;
+    border-radius: 25px;
+    padding: 25px;
+    margin: 15px 0;
+    border: 2px solid #133377;
+    text-align: left;
+}
+
+.meeting-card h3 {
+    color: #eab308;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.profile-items {
+    margin-bottom: 10px;
+    font-size: .95rem;
+}
+
+.profile-items span {
+    color: #94a3b8;
+}
+
+/* GRADE INFORMATION VIEW */
+
+#grade-info-view {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #121625;
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.grade-view-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.back-link-btn {
+    color: #38bdf8;
+    background: rgba(56,189,248,.05);
+    border: 1px solid rgba(56,189,248,.3);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-title {
+    margin-left: auto;
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+    text-align: right;
+}
+
+.grade-view-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.grade-view-header h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.grade-view-header p {
+    color: #38bdf8;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.grade-view-purple-card {
+    background: linear-gradient(135deg,#a855f7,#7c3aed);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    max-width: 440px;
+    margin: auto;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    font-size: 14px;
+    gap: 10px;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-value {
+    font-weight: bold;
+    text-align: right;
+    max-width: 60%;
+    overflow-wrap: anywhere;
+}
+
+.status-active-badge {
+    color: #4ade80;
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .cursive-name {
+        font-size: 39px;
+    }
+
+    .dashboard-title {
+        font-size: 28px;
+    }
+
+    .button-group {
+        gap: 5px;
+        flex-wrap: nowrap;
+    }
+
+    .button-group .btn-outline {
+        padding: 10px 3px;
+        font-size: .65rem;
+    }
+
+    .home-info h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HOME PAGE -->
+
+<div id="homePage" class="page active">
+
+    <div class="school-title">
+        <span class="cursive-name">Mehlwane Secondary</span>
+        <div class="sub-tag">SCHOOL</div>
+    </div>
+
+
+    <div class="home-info">
+        <h1>Welcome to Our School</h1>
+        <p>
+            Welcome to the Mehlwane Secondary School Portal.
+            Discover school information, academic updates,
+            notices and uniform prices.
+        </p>
+    </div>
+
+<!-- OUR MISSION -->
+<div class="home-card mission-card">
+    <h3>🎯 Our Mission</h3>
+    <p>
+        To provide quality education in a supportive and
+        inclusive learning environment that encourages
+        academic excellence, discipline, creativity and
+        personal development. We aim to empower every
+        learner with the knowledge, skills and values
+        needed to succeed in life.
+    </p>
+</div>
+
+<!-- OUR VISION -->
+<div class="home-card vision-card">
+    <h3>🌟 Our Vision</h3>
+    <p>
+        To be a centre of excellence that develops
+        responsible, confident and lifelong learners
+        who contribute positively to their communities
+        and help build a brighter future through education.
+    </p>
+</div>
+
+    <div class="home-card">
+        <h3>🎓 About Our School</h3>
+        <p>
+            Our portal provides students with access to
+            school information and academic updates in one place.
+        </p>
+    </div>
+
+    <div class="home-card">
+        <h3>📚 Academic Updates</h3>
+        <p>
+            Find grade information, syllabus updates
+            and important school notices.
+        </p>
+    </div>
+
+    <div class="home-card">
+        <h3>👔 School Uniform</h3>
+        <p>
+            View the school uniform price list through
+            the student portal.
+        </p>
+    </div>
+
+    <div class="home-card">
+        <h3>📍 Campus Information</h3>
+        <p>
+            Campus: Main Building, Phola.
+            Contact the school to confirm official information.
+        </p>
+    </div>
+
+    <div class="home-actions">
+        <button class="btn" type="button"
+            onclick="switchPage('loginPage')">
+            Log In
+        </button>
+
+        <button class="btn" type="button"
+            onclick="switchPage('signupPage')">
+            Sign Up
+        </button>
+    </div>
+
+    <div class="home-footer">
+        © 𝓣𝓱𝓾𝓽𝓸 𝓴𝓮 𝓶𝓪𝓽𝓵𝓪
+        <br>
+        𝓫𝔂 𝓶𝓱𝓵𝓮𝓵𝓲 • dev
+    </div>
+</div>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="page">
+
+    <div class="school-title">
+        <span class="cursive-name">Mehlwane Secondary</span>
+
+        <div class="sub-tag">school</div>
+
+        <span class="verified-badge" title="Verified Institution">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.48 0-.94.1-1.348.27C14.825 2.515 13.512 1.5 12 1.5S9.175 2.515 8.578 3.78c-.407-.17-.867-.27-1.348-.27-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4C2.377 9.55 1.5 10.92 1.5 12.5s.877 2.95 2.15 3.6c-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.48 0 .94-.1 1.348-.27.597 1.265 1.91 2.28 3.422 2.28s2.825-1.015 3.422-2.28c.407.17.867.27 1.348.27 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.15-2.02 2.15-3.6zm-12.72 3.23l-3.06-3.06 1.44-1.44 1.62 1.62 4.68-4.68 1.44 1.44-6.12 6.12z"/>
+            </svg>
+        </span>
+    </div>
+
+    <div class="school-subtitle">
+        Please enter your username and password to log in.
+    </div>
+
+    <div class="error-message" id="errorDiv" aria-live="polite"></div>
+
+    <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username"
+            placeholder="Enter your username"
+            autocomplete="username">
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password"
+            placeholder="Enter password"
+            autocomplete="current-password">
+    </div>
+
+    <button type="button" class="btn" onclick="handleLogin()">
+        Log in ⤴
+    </button>
+
+    <div class="motto">Don't have an account? Sign up now!</div>
+
+    <button type="button" class="btn"
+        onclick="switchPage('signupPage')">
+        Sign Up
+    </button>
+
+    <button type="button" class="btn-outline"
+        style="margin-top:15px"
+        onclick="switchPage('homePage')">
+        ← Home
+    </button>
+
+    <div class="mott">
+        𝓫𝔂 𝓶𝓱𝓵𝓮𝓵𝓲 ⛦⃕ᴍbuyazi⛦v⁶⁷•dev
+    </div>
+</div>
+
+<!-- SIGNUP PAGE -->
+
+<div id="signupPage" class="page">
+
+    <div class="dashboard-title">Create Account</div>
+    <div class="dashboard-subtitle">Student Registration</div>
+
+    <div class="error-message" id="signupError" aria-live="polite"></div>
+
+    <form id="signupForm">
+
+        <div class="input-group">
+            <label for="studentName">Student Name &amp; Surname</label>
+            <input type="text" id="studentName" required
+                autocomplete="name"
+                placeholder="Enter your name and surname">
+        </div>
+
+        <div class="input-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword"
+                required minlength="6"
+                autocomplete="new-password"
+                placeholder="Create a password">
+        </div>
+
+        <div class="input-group">
+            <label for="nickname">Username / Nickname</label>
+            <input type="text" id="nickname" required
+                autocomplete="username"
+                placeholder="Create a nickname">
+        </div>
+
+        <div class="input-group">
+            <label for="identity">Date of Birth</label>
+            <input type="date" id="identity" required>
+        </div>
+
+        <div class="input-group">
+            <label for="signupGrade">Grade</label>
+            <input type="text" id="signupGrade" required
+                placeholder="e.g. Grade 10-A">
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <button type="button" class="btn-outline"
+        style="margin-top:18px"
+        onclick="switchPage('homePage')">
+        ← Home
+    </button>
+
+    <div class="motto">©𝓣𝓱𝓾𝓽𝓸 𝓴𝓮 𝓶𝓪𝓽𝓵𝓪</div>
+    <div class="motto">𝓫𝔂 𝓶𝓱𝓵𝓮𝓵𝓲 ⛦⃕ᴍ⛦v⁶⁷• dev</div>
+</div>
+
+<!-- DASHBOARD PAGE -->
+
+<div id="dashboardPage" class="page">
+
+    <button class="hamburger-menu-btn" id="hamburgerMenuBtn"
+        type="button" aria-label="Open information menu">
+        ☰
+    </button>
+
+    <div class="kebab-dropdown-box" id="kebabDropdownBox">
+        <div class="menu-row">
+            <strong>Info:</strong><br>
+            2026 mhleli mbuyazi™<br>
+            pro-dev<br>
+            v.6.20-op
+        </div>
+
+        <div class="menu-row">
+            <strong>Copyright:</strong><br>
+            ©𝓣𝓱𝓾𝓽𝓸 𝓴𝓮 𝓶𝓪𝓽𝓵𝓪 2026
+        </div>
+
+        <div class="menu-row">
+            <strong>Identification:</strong><br>
+            uf4afsc33a0c17
+        </div>
+
+        <div class="menu-row">
+            <strong>Telegram:</strong><br>
+            <a href="https://t.me/" target="_blank" rel="noopener">
+                Telegram
+            </a>
+        </div>
+
+        <div class="menu-row">
+            <strong>Facebook:</strong><br>
+            <a href="https://facebook.com/" target="_blank" rel="noopener">
+                Facebook
+            </a>
+        </div>
+
+        <div class="menu-row">
+            <button type="button" class="btn"
+                onclick="handleLogout()">
+                Log Out
+            </button>
+        </div>
+    </div>
+
+    <!-- LEFT MENU -->
+
+    <div class="menu-container">
+        <button class="menu-btn" type="button"
+            onclick="toggleMenu()" aria-label="Open school menu">
+            ⋮
+        </button>
+
+        <div id="dropdown-menu" class="dropdown-content">
+
+            <div id="main-menu-view">
+                <div class="menu-section clickable-section"
+                    onclick="showGradesView()">
+                    <span class="info-label">Info:</span><br>
+                    Term-3™ Grade Updates
+                    <div class="click-hint">▶ View Grades</div>
+                </div>
+
+                <div class="menu-section">
+                    <span class="info-label">UI:</span>
+                    Settings
+                </div>
+
+                <div class="menu-section">
+                    <span class="info-label">Identification:</span><br>
+                    uf4afsc33a0c17
+                </div>
+
+                <div class="menu-section last-section">
+                    <span class="info-label">Telegram:</span><br>
+                    <a href="https://t.me/" target="_blank"
+                        rel="noopener" class="telegram-link">
+                        Telegram
+                    </a>
+                </div>
+            </div>
+
+            <div id="grades-menu-view" style="display:none">
+                <div class="submenu-header">
+                    <button class="back-btn" type="button"
+                        onclick="showMainView()">◀ Back</button>
+                    <span class="info-label">Select Grade</span>
+                </div>
+
+                <div class="grade-cards-grid">
+                    <div class="grade-card" onclick="selectGrade(8)">
+                        <span class="card-info">info</span>Grade 8
+                    </div>
+                    <div class="grade-card" onclick="selectGrade(9)">
+                        <span class="card-info">info</span>Grade 9
+                    </div>
+                    <div class="grade-card" onclick="selectGrade(10)">
+                        <span class="card-info">info</span>Grade 10
+                    </div>
+                    <div class="grade-card" onclick="selectGrade(11)">
+                        <span class="card-info">info</span>Grade 11
+                    </div>
+                    <div class="grade-card" onclick="selectGrade(12)">
+                        <span class="card-info">info</span>Grade 12
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-title">Student Portal</div>
+    <div class="dashboard-subtitle">Successfully Authorized ☑</div>
+
+    <h2 style="margin-top:10px;text-align:center">
+        Welcome<br>
+        <span id="userGreeting" style="color:#2ea6ff">User</span>!
+    </h2>
+
+    <div class="welcome-card">
+        <div class="profile-item">
+            <span>Account Role:</span>
+            <span class="profile-value">Student</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Current Grade:</span>
+            <span id="userGrade" class="profile-value">Loading...</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Campus Location:</span>
+            <span class="profile-value">Main Building Phola</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Portal Status:</span>
+            <span class="profile-value">Active</span>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-outline" type="button"
+            onclick="handleLogout()">Logout</button>
+
+        <button class="btn-outline" type="button"
+            onclick="handleUpdatesClick()">Update</button>
+
+        <button class="btn-outline" type="button"
+            onclick="handlepricesClick()">Prices</button>
+    </div>
+
+    <div class="motto">©𝓣𝓱𝓾𝓽𝓸 𝓴𝓮 𝓶𝓪𝓽𝓵𝓪</div>
+    <div class="mott">𝓫𝔂 𝓶𝓱𝓵𝓮𝓵𝓲 𝓶𝓫𝓾𝔂𝓪𝔃𝓲™</div>
+</div>
+
+<!-- SCHOOL NOTICE PAGE -->
+
+<div id="updatePage" class="page">
+    <div class="dashboard-title" style="color:#eab308">School Notice</div>
+    <div class="dashboard-subtitle">Latest Information &amp; Updates</div>
+
+    <div class="meeting-card">
+        <h3>📅 Award Ceremony</h3>
+
+        <div class="profile-item">
+            <span>Topic:</span>
+            Term 2 Academic Performance Ceremony
+        </div>
+
+        <div class="profile-item">
+            <span>Date:</span>
+            Friday, 14 August 2026
+        </div>
+
+        <div class="profile-item">
+            <span>Time:</span>13:00
+        </div>
+
+        <div class="profile-item">
+            <span>Venue:</span>
+            Main School Building Phola
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-outline" type="button"
+            onclick="handleBackToPortal()">← Back</button>
+    </div>
+</div>
+
+<!-- PRICES PAGE -->
+
+<div id="pricesPage" class="page">
+    <div class="dashboard-title" style="color:#eab308">
+        Uniform Prices 💲
+    </div>
+
+    <div class="dashboard-subtitle">
+        Good quality at a nice price
+    </div>
+
+    <div class="meeting-card">
+        <h3>Items Price List</h3>
+
+        <div class="profile-items">
+            <span>Shirt:</span> R150
+        </div>
+
+        <div class="profile-items">
+            <span>Trousers / Skirt:</span> R220
+        </div>
+
+        <div class="profile-items">
+            <span>School Blazer:</span> R450
+        </div>
+
+        <div class="profile-items">
+            <span>Jersey:</span> R250
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-outline" type="button"
+            onclick="handleBackToPortal()">← Back</button>
+    </div>
+</div>
+
+</div>
+
+<!-- GRADE INFORMATION VIEW -->
+
+<div id="grade-info-view">
+    <div class="grade-view-nav">
+        <button class="back-link-btn" type="button"
+            onclick="returnToDashboard()">
+            ◀ Back to Portal
+        </button>
+
+        <span class="nav-title">Mehlwane Secondary School</span>
+    </div>
+
+    <div class="grade-view-header">
+        <h1 id="dyn-grade-title">Grade Overview</h1>
+        <p>Term 3 Assessment Information</p>
+    </div>
+
+    <div class="grade-view-purple-card">
+        <div class="info-row">
+            <span class="info-label">Syllabus Status:</span>
+            <span id="dyn-syllabus" class="info-value">--</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Upcoming Exams:</span>
+            <span id="dyn-exams" class="info-value">--</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Portal Status:</span>
+            <span class="info-value status-active-badge">
+                Active
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+/* PAGE SWITCHING */
+
+function switchPage(pageId) {
+    const page = document.getElementById(pageId);
+
+    if (!page) {
+        console.error("Page not found:", pageId);
+        return;
+    }
+
+    document.querySelectorAll(".page").forEach(function(item) {
+        item.classList.remove("active");
+    });
+
+    page.classList.add("active");
+
+    closeMenus();
+    window.scrollTo(0, 0);
+}
+
+function closeMenus() {
+    const leftMenu = document.getElementById("dropdown-menu");
+    const rightMenu = document.getElementById("kebabDropdownBox");
+
+    if (leftMenu) leftMenu.classList.remove("show");
+    if (rightMenu) rightMenu.classList.remove("kebab-menu-open");
+}
+
+/* LOGIN: POST TO YOUR SERVER */
+
+async function handleLogin() {
+    const userInput = document.getElementById("username").value.trim();
+    const passInput = document.getElementById("password").value;
+    const errorDiv = document.getElementById("errorDiv");
+
+    if (!userInput || !passInput) {
+        errorDiv.innerText = "Please enter both username and password.";
+        return;
+    }
+
+    errorDiv.style.color = "#38bdf8";
+    errorDiv.innerText = "Checking...";
+
+    try {
+        const response = await fetch("/api/user", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                username: userInput,
+                password: passInput
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            errorDiv.style.color = "#ff4d4d";
+            errorDiv.innerText = data.error || "Invalid username or password.";
+            return;
+        }
+
+        /*
+         * Supports either:
+         * { name: "Student", grade: "9-C" }
+         * or { student: { name: "Student", grade: "9-C" } }
+         */
+        const student = data.student || data;
+
+        if (!student.name || !student.grade) {
+            errorDiv.style.color = "#ff4d4d";
+            errorDiv.innerText = "The server returned incomplete student details.";
+            return;
+        }
+
+        document.getElementById("userGreeting").innerText = student.name;
+        document.getElementById("userGrade").innerText = student.grade;
+        errorDiv.innerText = "";
+
+        switchPage("dashboardPage");
+
+    } catch (error) {
+        console.error(error);
+        errorDiv.style.color = "#ff4d4d";
+        errorDiv.innerText = "Cannot connect to server. Please try again.";
+    }
+}
+
+/* LOGOUT */
+
+function handleLogout() {
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("errorDiv").innerText = "";
+    document.getElementById("userGreeting").innerText = "User";
+    document.getElementById("userGrade").innerText = "Loading...";
+    switchPage("homePage");
+}
+
+/* SIGNUP */
+
+function handleUpdatesClick() {
+    switchPage("updatePage");
+}
+
+document.getElementById("signupForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const signupError = document.getElementById("signupError");
+    const studentName = document.getElementById("studentName").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const nickname = document.getElementById("nickname").value.trim();
+    const identity = document.getElementById("identity").value;
+    const grade = document.getElementById("signupGrade").value.trim();
+
+    if (!studentName || !password || !nickname || !identity || !grade) {
+        signupError.innerText = "Please complete all fields.";
+        return;
+    }
+
+    signupError.style.color = "#38bdf8";
+    signupError.innerText = "Preparing registration...";
+
+    /*
+     * This calls /api/signup. Create that backend endpoint
+     * before using server-based registration.
+     * Passwords should be hashed by the server and must
+     * never be sent to an administrator by email.
+     */
+    try {
+        const response = await fetch("/api/signup", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                name: studentName,
+                username: nickname,
+                password: password,
+                dateOfBirth: identity,
+                grade: grade
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            signupError.style.color = "#ff4d4d";
+            signupError.innerText = data.error || "Registration could not be completed.";
+            return;
+        }
+
+        signupError.style.color = "#4ade80";
+        signupError.innerText = data.message || "Registration successful. You can now log in.";
+
+        document.getElementById("signupForm").reset();
+
+    } catch (error) {
+        console.error(error);
+        signupError.style.color = "#ff4d4d";
+        signupError.innerText =
+            "Registration service is unavailable. Your /api/signup endpoint must be configured.";
+    }
+});
+
+/* NOTICE / PRICES */
+
+function handlepricesClick() {
+    switchPage("pricesPage");
+}
+
+function handleBackToPortal() {
+    switchPage("dashboardPage");
+}
+
+/* RIGHT HAMBURGER MENU */
+
+document.getElementById("hamburgerMenuBtn").addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    const menu = document.getElementById("kebabDropdownBox");
+    menu.classList.toggle("kebab-menu-open");
+});
+
+/* LEFT MENU */
+
+function toggleMenu() {
+    const dropdown = document.getElementById("dropdown-menu");
+    dropdown.classList.toggle("show");
+
+    if (dropdown.classList.contains("show")) {
+        showMainView();
+    }
+}
+
+function showGradesView() {
+    document.getElementById("main-menu-view").style.display = "none";
+    document.getElementById("grades-menu-view").style.display = "block";
+}
+
+function showMainView() {
+    document.getElementById("grades-menu-view").style.display = "none";
+    document.getElementById("main-menu-view").style.display = "block";
+}
+
+/* GRADE INFORMATION */
+
+const gradeInformationRecords = {
+    8: {
+        title: "Grade 8 Dashboard View",
+        syllabus: "Go and research",
+        exams: "Practical term. Be ready for projects."
+    },
+    9: {
+        title: "Grade 9 Dashboard View",
+        syllabus: "52% Verified - check your Term 3 work.",
+        exams: "Review your Mathematics work and prepare for assessments."
+    },
+    10: {
+        title: "Grade 10 Dashboard View",
+        syllabus: "Grade 10 content overview",
+        exams: "Review your Mathematics and Science or Commerce subjects."
+    },
+    11: {
+        title: "Grade 11 Dashboard View",
+        syllabus: "85% Processed Content",
+        exams: "Check with your teachers for practical assessment dates."
+    },
+    12: {
+        title: "Grade 12 Dashboard View",
+        syllabus: "Core syllabus overview",
+        exams: "Check the official matric examination timetable."
+    }
+};
+
+function selectGrade(gradeNumber) {
+    const activeData = gradeInformationRecords[gradeNumber];
+
+    if (!activeData) return;
+
+    document.getElementById("dyn-grade-title").innerText = activeData.title;
+    document.getElementById("dyn-syllabus").innerText = activeData.syllabus;
+    document.getElementById("dyn-exams").innerText = activeData.exams;
+    document.getElementById("grade-info-view").style.display = "block";
+
+    closeMenus();
+}
+
+function returnToDashboard() {
+    document.getElementById("grade-info-view").style.display = "none";
+    switchPage("dashboardPage");
+}
+
+/* CLOSE MENUS WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", function(event) {
+    if (!event.target.closest(".menu-container")) {
+        document.getElementById("dropdown-menu").classList.remove("show");
+    }
+
+    if (
+        !event.target.closest(".hamburger-menu-btn") &&
+        !event.target.closest(".kebab-dropdown-box")
+    ) {
+        document.getElementById("kebabDropdownBox").classList.remove("kebab-menu-open");
+    }
+});
+
+/* ENTER KEY LOGIN */
+
+document.getElementById("password").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        handleLogin();
+    }
+});
+</script>
+
+</body>
+</html>
